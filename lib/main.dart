@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
           ),
           labelStyle: TextStyle(color: sanguineBrown),
         ),
+        scaffoldBackgroundColor: whiteRock,
       ),
       initialRoute: '/',
       routes: {
