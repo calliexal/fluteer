@@ -49,12 +49,12 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: sanguineBrown,  // Warna background untuk seluruh layar
+      color: whiteRock,  
       child: Scaffold(
-        backgroundColor: Colors.transparent,  // Atur scaffold menjadi transparan
+        backgroundColor: Colors.transparent,  
         appBar: AppBar(
           title: Text('Cart'),
-          backgroundColor: sanguineBrown,  // Warna background untuk AppBar
+          backgroundColor: sanguineBrown,  
         ),
         body: SingleChildScrollView(
           child: Padding(
