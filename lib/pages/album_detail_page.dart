@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/album.dart';
-import '../colors.dart'; 
+import '../colors.dart';
 
 class AlbumDetailPage extends StatelessWidget {
   final Album album;
@@ -11,38 +11,41 @@ class AlbumDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(album.title)),
+      appBar: AppBar(
+        title: Text(album.title),
+        backgroundColor: whiteRock, 
+      ),
+      backgroundColor: sanguineBrown,
       body: Container(
-        color: sanguineBrown, 
+        color: sanguineBrown,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Image.asset(album.imageUrl, width: 200, height: 200),
-              SizedBox(height: 20),
-              Text(
-                album.title,
-                style: TextStyle(fontSize: 24, color: Colors.white), 
-              ),
-              Text(
-                'by ${album.artist}',
-                style: TextStyle(fontSize: 18, color: Colors.grey[200]), 
-              ),
-              SizedBox(height: 20),
-              Text(
-                '\$${album.price}',
-                style: TextStyle(fontSize: 24, color: Colors.white), 
-              ),
-              SizedBox(height: 20),
-              Text(
-                album.description,
-                style: TextStyle(color: Colors.white), 
-              ),
-              Spacer(),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: ElevatedButton(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Image.asset(album.imageUrl, width: 200, height: 200),
+                SizedBox(height: 20),
+                Text(
+                  album.title,
+                  style: TextStyle(fontSize: 24, color: Colors.white),
+                ),
+                Text(
+                  'by ${album.artist}',
+                  style: TextStyle(fontSize: 18, color: Colors.grey[200]),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  '\$${album.price}',
+                  style: TextStyle(fontSize: 24, color: Colors.white),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  album.description,
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(height: 20), // Add some space before the button
+                ElevatedButton(
                   onPressed: () {
                     cartItems.add({
                       'title': album.title,
@@ -52,13 +55,13 @@ class AlbumDetailPage extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepOrange, 
-                    foregroundColor: Colors.white, 
+                    backgroundColor: Colors.deepOrange,
+                    foregroundColor: Colors.white,
                   ),
                   child: Text('Add to Cart'),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
