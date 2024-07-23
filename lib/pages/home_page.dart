@@ -3,7 +3,7 @@ import '../models/album.dart';
 import 'album_detail_page.dart';
 import 'cart_page.dart';
 import 'profile_page.dart';
-import 'order_page.dart'; 
+import 'order_page.dart';
 import '../colors.dart';
 
 class HomePage extends StatefulWidget {
@@ -160,6 +160,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
+        backgroundColor: sanguineBrown,
         actions: [
           Stack(
             children: [
@@ -194,7 +195,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: Color.fromARGB(255, 231, 232, 214),
+          color: whiteRock,
           child: Column(
             children: [
               Padding(
@@ -208,29 +209,43 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: filteredAlbums.length,
-                itemBuilder: (context, index) {
-                  final album = filteredAlbums[index];
-                  return ListTile(
-                    leading: Image.asset(album.imageUrl, width: 50, height: 50),
-                    title: Text(album.title),
-                    subtitle: Text(album.artist),
-                    trailing: Text('\$${album.price}'),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AlbumDetailPage(
-                              album: album, cartItems: cartItems),
+              filteredAlbums.isEmpty
+                  ? Container(
+                      height: MediaQuery.of(context).size.height * 0.5,
+                      color: whiteRock,
+                      child: Center(
+                        child: Text(
+                          'No results found',
+                          style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 16,
+                          ),
                         ),
-                      );
-                    },
-                  );
-                },
-              ),
+                      ),
+                    )
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: filteredAlbums.length,
+                      itemBuilder: (context, index) {
+                        final album = filteredAlbums[index];
+                        return ListTile(
+                          leading: Image.asset(album.imageUrl, width: 50, height: 50),
+                          title: Text(album.title),
+                          subtitle: Text(album.artist),
+                          trailing: Text('\$${album.price}'),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AlbumDetailPage(
+                                    album: album, cartItems: cartItems),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
             ],
           ),
         ),
